@@ -366,7 +366,8 @@ a { color: inherit; }
   line-height: 1.056;
   letter-spacing: -0.02em;
   text-align: center;
-  color: var(--ink);
+  color: #fff;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
 }
 .tash-hero__logo {
   width: clamp(180px, 22.3vw, 286px);
@@ -389,7 +390,7 @@ a { color: inherit; }
 .tash-body .content-body { max-width: 880px; }
 .tash-body .video-embed { width: 100%; }
 
-.tash-spacer { min-height: 33vh; }
+.tash-spacer { min-height: 48px; }
 
 /* Centre-aligned intro (heading + paragraph) */
 .text-center { text-align: center; }
@@ -399,7 +400,7 @@ a { color: inherit; }
 .tash-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 8px;
   padding: 0 var(--site-gutter);
 }
 .tash-gallery__item {
