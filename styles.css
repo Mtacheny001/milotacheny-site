@@ -1,0 +1,564 @@
+/* ==========================================================================
+   Milo Tacheny — milotacheny.com
+   Rebuilt as a static site. Layout mirrors the original fluid grid:
+   26 columns (gutter + 24 cells + gutter), 11px column gap, 1500px max width.
+   ========================================================================== */
+
+:root {
+  --site-max-width: 1500px;
+  --site-gutter: 4vw;
+  --mobile-site-gutter: 6vw;
+  --gap: 11px;
+
+  --ink: #000;
+  --paper: #fff;
+
+  /* Brand palette, sampled from the hero tiles */
+  --ochre: #a46403;
+  --slate: #546669;
+  --olive: #586145;
+  --charcoal: #47413c;
+
+  --header-height: 80px;
+  --section-pad: 43px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Raleway, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+}
+.skip-link:focus { left: 0; }
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 3px;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+.header {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  height: var(--header-height);
+  padding: 0 var(--site-gutter);
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.header__brand { display: block; flex: none; }
+.header__brand img { width: 46px; height: auto; }
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.header__nav a {
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header__nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.header__nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ── Section + grid ───────────────────────────────────────────────────── */
+
+.section {
+  min-height: 33vh;
+  display: flex;
+  align-items: center;
+  padding-block: var(--section-pad);
+}
+
+/* The hero clears the absolutely-positioned header. */
+.section--hero { padding-top: calc(var(--header-height) + var(--section-pad)); }
+
+.grid {
+  /* Width of the centred content area, gutters excluded. */
+  --container-width: min(var(--site-max-width), calc(100vw - var(--site-gutter) * 2));
+  --cell-max-width: calc((var(--site-max-width) - (var(--gap) * 23)) / 24);
+  --grid-gutter: calc(var(--site-gutter) - var(--gap));
+  --row-height: calc(var(--container-width) * 0.0215);
+
+  display: grid;
+  width: 100%;
+  grid-template-columns:
+    minmax(var(--grid-gutter), 1fr)
+    repeat(24, minmax(0, var(--cell-max-width)))
+    minmax(var(--grid-gutter), 1fr);
+  column-gap: var(--gap);
+  row-gap: var(--gap);
+  overflow-x: clip;
+}
+
+.grid--hero   { grid-template-rows: repeat(5,  minmax(var(--row-height), auto)); }
+.grid--work   { grid-template-rows: repeat(19, minmax(var(--row-height), auto)); row-gap: 0; }
+.grid--footer { grid-template-rows: repeat(2,  minmax(var(--row-height), auto)); }
+
+/* Content pages set their own row count via --rows. */
+.grid--rows { grid-template-rows: repeat(var(--rows, 1), minmax(var(--row-height), auto)); }
+
+.block { grid-area: var(--area); min-width: 0; }
+
+/* Images letterbox inside their block, matching the original. They are taken out
+   of flow so their intrinsic height can't stretch the auto-sized grid rows —
+   the block's row span alone decides the height, as on the original. */
+.block:has(> .fit) { position: relative; }
+
+.fit {
+  position: absolute;
+  inset: 0;
+  margin: auto;              /* centres the image on both axes within its block */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.block--text { display: flex; flex-direction: column; justify-content: flex-start; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+/* Fluid type: both sizes grow as 16px + Nvw and stop at the value they reach
+   at the 1500px site max-width — matching the original at 1024/1280/1440/1600+. */
+.hero__title {
+  margin: 0;
+  font-size: min(16px + 3.6vw, 70px);
+  font-weight: 400;          /* the <strong> supplies the weight, as on the original */
+  line-height: 1.056;
+  letter-spacing: -0.02em;
+}
+.hero__title strong { font-weight: 700; }
+
+.hero__sub {
+  margin: 29px 0 0;
+  font-size: min(16px + 0.72vw, 26.8px);
+  font-weight: 400;
+  line-height: 1.171;
+  letter-spacing: -0.02em;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 51px;
+  padding: 0 19.2px;
+  border-radius: 6.4px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.18s ease;
+}
+.btn:hover { opacity: 0.82; }
+
+/* ── Category index pages (Design / Research / TASH Studios) ──────────── */
+
+/* These pages don't use the fluid grid — just a full-bleed two-column grid
+   with its own padding. It has no max-width, so it keeps growing past 1500px. */
+.page-index { padding-top: var(--header-height); }
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 3.3vw var(--site-gutter);
+}
+
+.portfolio-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.portfolio-item__media {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.portfolio-item__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.18s ease;
+}
+
+.portfolio-item:hover .portfolio-item__media img { opacity: 0.85; }
+
+.portfolio-title {
+  margin: 0 0 0.5em;
+  font-size: min(16px + 0.72vw, 26.8px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ── Fluid-grid content pages (Research / TASH Studios) ──────────────────
+   Same 26-column engine as the landing page; sections just place their own
+   blocks. Unlike the hero, these flow at natural height (no forced centring)
+   apart from a couple that carry the original's min-height. */
+
+.section--content {
+  min-height: 0;
+  align-items: stretch;
+  padding-block: 0;
+  display: block;
+}
+.section--content.section--first { padding-top: var(--header-height); }
+.section--content.section--tall { min-height: 33vh; }
+/* Bio: the portrait runs up behind the floating header, so the section itself
+   only carries a small top pad (matching the original's 37px). */
+.section--content.section--bio { padding-top: 37px; }
+.section--content.section--contact { min-height: 858px; padding-top: var(--header-height); }
+
+/* Content-page images are in-flow and drive their own block height (as on the
+   original), rather than being letterboxed into a grid-sized box like the hero.
+   Filling the column width at natural aspect reproduces the original's exact
+   rendered heights (glove 721px, nfpa 515px, etc.). */
+.section--content .block:has(> .fit) { position: static; }
+.section--content .fit {
+  position: static;
+  inset: auto;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+}
+
+/* Fluid heading (h2), matching the original: min(16px + 2.16vw, 48.4px). */
+.content-heading {
+  margin: 0;
+  font-size: min(16px + 2.16vw, 48.4px);
+  font-weight: 400;
+  line-height: 1.114;
+  letter-spacing: -0.02em;
+}
+
+.content-body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.content-body + .content-body { margin-top: 1em; }
+
+/* Same pill as the landing-page category buttons. */
+.btn--link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 51px;
+  padding: 0 19.2px;
+  border-radius: 6.4px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 16px;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: opacity 0.18s ease;
+}
+.btn--link:hover { opacity: 0.82; }
+
+/* ── Case-study pages (design/*.html) ─────────────────────────────────── */
+
+.case-study { padding-top: var(--header-height); }
+
+/* Slides stack full-width within the site content column, matching the
+   original's 1178px-wide presentation boards. */
+.case-deck {
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+  padding: 0 var(--site-gutter);
+  display: flex;
+  flex-direction: column;
+}
+.case-slide { display: block; width: 100%; height: auto; }
+
+.case-back {
+  max-width: var(--site-max-width);
+  margin: 40px auto;
+  padding: 0 var(--site-gutter);
+  font-size: 16px;
+}
+.case-back a { text-decoration: none; }
+.case-back a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ── TASH Studios ─────────────────────────────────────────────────────── */
+
+/* Cover variant of .fit — fills the block and crops, for the hero banner and
+   gallery tiles (the base .fit letterboxes with contain). */
+.fit--cover {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+}
+
+/* Hero: full-bleed banner with the title and logo overlaid. Built as a simple
+   relative stage rather than the fluid grid — an overlay is what it is. */
+.tash-hero {
+  position: relative;
+  margin-top: var(--header-height);
+  overflow: hidden;
+}
+.tash-hero__banner {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 27.5vw, 352px);
+  object-fit: cover;
+}
+.tash-hero__stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 28px;
+}
+.tash-hero__title {
+  margin: 0;
+  font-size: min(16px + 3.6vw, 70px);
+  font-weight: 400;
+  line-height: 1.056;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--ink);
+}
+.tash-hero__logo {
+  width: clamp(180px, 22.3vw, 286px);
+  height: auto;
+  margin-top: 10px;
+}
+
+/* Section 2: centred intro + video + button */
+.tash-body {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 60px var(--site-gutter) 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.tash-body .content-heading { margin: 0; }
+.tash-body .content-body { max-width: 880px; }
+.tash-body .video-embed { width: 100%; }
+
+.tash-spacer { min-height: 33vh; }
+
+/* Centre-aligned intro (heading + paragraph) */
+.text-center { text-align: center; }
+.text-center.block--text { align-items: center; }
+
+/* Three-up gallery */
+.tash-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding: 0 var(--site-gutter);
+}
+.tash-gallery__item {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.tash-gallery__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Responsive 16:9 video embed */
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── Contact form ─────────────────────────────────────────────────────── */
+
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+
+/* "Name" group with First / Last side by side, like the original. */
+.form-group__label { font-size: 16px; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-label {
+  font-size: 16px;
+  line-height: 1.4;
+}
+.form-label .req { color: #767676; }
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--ink);
+}
+.contact-form input { height: 46px; }
+.contact-form textarea { min-height: 100px; resize: vertical; }
+
+.contact-form button[type="submit"] {
+  align-self: flex-start;
+  padding: 19.2px;
+  min-height: 51px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+  border-radius: 6.4px;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.18s ease;
+}
+.contact-form button[type="submit"]:hover { opacity: 0.82; }
+
+.form-status { margin: 4px 0 0; font-size: 15px; }
+
+/* The empty light-grey block on the left of the contact page, reproduced as-is. */
+.contact-placeholder { background: #e4e2dd; width: 100%; height: 100%; }
+
+/* PDF embeds (Google Drive preview) fill their block. */
+.block--embed { position: relative; }
+.content-embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+
+.footer__copy {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.socials svg { width: 20px; height: 20px; fill: currentColor; }
+.socials a:hover { background: var(--ink); color: var(--paper); }
+
+/* ── Mobile ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  :root { --site-gutter: var(--mobile-site-gutter); }
+
+  .section { min-height: 0; padding-block: 40px; }
+  .section--hero { padding-top: calc(var(--header-height) + 24px); }
+
+  /* Drop the fluid grid; stack everything in source order. */
+  .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding: 0 var(--site-gutter);
+  }
+  .block { grid-area: auto; }
+
+  /* Images flow normally again once the fixed row heights are gone. */
+  .block:has(> .fit) { position: static; }
+  .fit { position: static; height: auto; }
+
+  .hero__title { font-size: 44px; }
+  .hero__sub { font-size: 20px; margin-top: 18px; }
+
+  /* The four sketch tiles sit in one row, as they do on the original. */
+  .grid--hero { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; }
+  .grid--hero > .block:nth-child(1) { grid-column: 1 / -1; }
+  /* Colour bar stays flush left with the heading rather than centring. */
+  .grid--hero > .block:nth-child(1) .fit { width: 88px; height: auto; margin-inline: 0 auto; }
+  .grid--hero > .block:nth-child(2) { grid-column: 1 / -1; }
+
+  .grid--work .fit { height: auto; max-height: 46vh; }
+  .btn { min-height: 48px; }
+
+  .socials { justify-content: flex-start; }
+
+  /* The index grid drops to one column at exactly the same 768px breakpoint
+     the original uses, where the gutter also switches 4vw -> 6vw. */
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-title { font-size: calc(21.2403px + 0.1616vw); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
