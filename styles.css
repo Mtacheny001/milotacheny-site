@@ -475,7 +475,7 @@ a { color: inherit; }
 .form-status { margin: 4px 0 0; font-size: 15px; }
 
 /* The empty light-grey block on the left of the contact page, reproduced as-is. */
-.contact-placeholder { background: #e4e2dd; width: 100%; height: 100%; }
+.contact-map { width: 100%; height: 320px; border: 0; display: block; }
 
 /* PDF embeds (Google Drive preview) fill their block. */
 .block--embed { position: relative; }
