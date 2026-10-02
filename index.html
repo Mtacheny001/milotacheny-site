@@ -40,10 +40,10 @@ nav .cta{color:var(--ink);border:1px solid var(--ink);padding:7px 14px;border-ra
 .hero h1{font-size:clamp(48px,7.5vw,104px);line-height:.98;letter-spacing:-.035em;font-weight:600;margin:18px 0 22px}
 .hero .sub{font-size:clamp(20px,2vw,26px);line-height:1.3;font-weight:500;letter-spacing:-.01em;margin:0 0 18px;max-width:46ch}
 .hero p{font-size:clamp(17px,1.4vw,19px);color:var(--ink-2);max-width:62ch;margin:0}
-.bar{display:flex;height:6px;width:132px;margin-top:36px;border-radius:3px;overflow:hidden}
+.bar{display:flex;height:10px;width:100%;margin-top:56px;border-radius:5px;overflow:hidden}
 .bar span{flex:1}
 
-.index{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:56px}
+.index{display:grid;grid-template-columns:repeat(3,1fr);margin-top:6px}
 .index a{padding:22px 24px 26px 0;border-right:1px solid var(--line);display:block}
 .index a+a{padding-left:24px}
 .index a:last-child{border-right:0}
@@ -196,12 +196,17 @@ footer .bottom{display:flex;justify-content:space-between;margin-top:56px;gap:16
   <!-- Hero -->
   <section class="hero">
     <div class="wrap">
-      <span class="label">Portfolio · 2026</span>
-      <h1>Milo Tacheny</h1>
-      <p class="sub">Systems engineer and design researcher working across human factors, higher education, and physical products.</p>
-      <p>I study how people fit the products and systems they depend on, then design around what I find. My current work includes AI-assisted strategy workflows at the University of Minnesota, protective equipment research with the Human Dimensioning Lab, and everyday carry gear for specialized demographics under Tash Labs.</p>
-      <div class="bar" aria-hidden="true"><span style="background:var(--ochre)"></span><span style="background:var(--slate)"></span><span style="background:var(--olive)"></span><span style="background:var(--charcoal)"></span></div>
+      <div class="hero-top">
+        <div>
+        <span class="label">Portfolio · 2026</span>
+        <h1>Milo Tacheny</h1>
+        <p class="sub">Systems engineer and design researcher working across human factors, higher education, and physical products.</p>
+        <p>I study how people fit the products and systems they depend on, then design around what I find. My current work includes AI-assisted strategy workflows at the University of Minnesota, protective equipment research with the Human Dimensioning Lab, and everyday carry gear for specialized demographics under Tash Labs.</p>
+        </div>
 
+      </div>
+
+      <div class="bar" aria-hidden="true"><span style="background:var(--ochre)"></span><span style="background:var(--slate)"></span><span style="background:var(--olive)"></span><span style="background:var(--charcoal)"></span></div>
       <div class="index">
         <a href="#research"><span class="n">01</span><h3>Research &amp; Strategy</h3><p>Protective equipment fit research with the Human Dimensioning Lab.</p></a>
         <a href="#systems"><span class="n">02</span><h3>Human Factors &amp; Systems Design</h3><p>AI-assisted research and synthesis workflows, including the CDes Atlas of AI tools for design.</p></a>
@@ -310,7 +315,7 @@ footer .bottom{display:flex;justify-content:space-between;margin-top:56px;gap:16
     <div class="wrap">
       <div class="sec-head">
         <div><span class="label">03 · Industrial Design</span><h2>Selected physical products.</h2></div>
-        <p>A focused selection of physical products. Each one starts with the same question as the research: who is this built to fit?</p>
+        <p>A focused selection of physical products.</p>
       </div>
 
       <div class="highlights">
@@ -335,7 +340,7 @@ footer .bottom{display:flex;justify-content:space-between;margin-top:56px;gap:16
         </a>
         <a class="card" href="design/humangear-internship.html">
           <div class="media"><img src="assets/design/humangear.png" alt="HUMANGEAR internship work" loading="lazy"></div>
-          <div class="body"><span class="label">Industry · Outdoor</span><h4>HUMANGEAR</h4><p>Product development internship on outdoor hard goods.</p></div>
+          <div class="body"><span class="label">Industry · Outdoor</span><h4>HUMANGEAR</h4><p>Product video launches and cross-team internship, with ongoing contract work.</p></div>
         </a>
       </div>
     </div>
