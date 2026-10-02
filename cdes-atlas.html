@@ -97,6 +97,7 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .stage-head .stages{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font:400 9.5px/1.2 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.03em}
 .empty{padding:40px 16px;color:var(--ink-3);text-align:center}
 @media (max-width:820px){
+  .list{max-height:none}
   .row-btn,.stage-head{grid-template-columns:34px 1fr 24px}
   .row-btn .flags,.row-btn .stages,.stage-head .stages,.stage-head .h-type{display:none}
   .detail{padding:4px 16px 20px}
@@ -112,7 +113,7 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .node{cursor:pointer}
 .node circle{transition:opacity .15s}
 .dim{opacity:.12}
-@media (max-width:900px){.net{grid-template-columns:1fr}.net svg{height:520px}.net aside{border-left:0;border-top:1px solid var(--line);max-height:none}}
+@media (max-width:900px){.net{grid-template-columns:1fr}.net svg{height:auto;aspect-ratio:1000/720}.net aside{border-left:0;border-top:1px solid var(--line);max-height:none}}
 
 footer{border-top:1px solid var(--ink);padding:28px 0 36px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -123,7 +124,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <header>
   <div class="wrap">
     <a class="brand" href="index.html"><img src="assets/logo-signature.png" alt="">Milo Tacheny</a>
-    <nav style="display:flex;gap:24px;font-size:15px"><a class="back" href="about.html">About</a><a class="back" href="index.html#systems">← Back to portfolio</a></nav>
+    <nav style="display:flex;gap:24px;font-size:15px"><a class="back" href="about.html">About</a><a class="back" href="index.html#systems">← Portfolio</a></nav>
   </div>
 </header>
 
