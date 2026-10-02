@@ -4,112 +4,389 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Milo Tacheny</title>
-<meta name="description" content="Milo Tacheny — Product Design x Human Factors.">
-
+<meta name="description" content="Milo Tacheny. Research and strategy, human factors and systems design, and industrial design.">
 <link rel="icon" href="assets/logo-signature.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141414; --ink-2:#4a4a4a; --ink-3:#8a8a86;
+  --paper:#fff; --tint:#f5f4f1; --line:#e3e1dc;
+  --ochre:#a46403; --slate:#546669; --olive:#586145; --charcoal:#47413c;
+  --max:1280px; --pad:clamp(16px,4vw,48px);
+  --sans:"Inter Tight",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.label{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.01em}
+.brand img{height:30px;width:auto}
+nav{display:flex;gap:26px;font-size:15px}
+nav a{color:var(--ink-2)} nav a:hover{color:var(--ink)}
+nav .cta{color:var(--ink);border:1px solid var(--ink);padding:7px 14px;border-radius:999px}
+@media (max-width:860px){nav a:not(.cta){display:none}}
+
+/* Hero */
+.hero{padding:clamp(56px,8vw,104px) 0 48px}
+.hero h1{font-size:clamp(48px,7.5vw,104px);line-height:.98;letter-spacing:-.035em;font-weight:600;margin:18px 0 22px}
+.hero .sub{font-size:clamp(20px,2vw,26px);line-height:1.3;font-weight:500;letter-spacing:-.01em;margin:0 0 18px;max-width:46ch}
+.hero p{font-size:clamp(17px,1.4vw,19px);color:var(--ink-2);max-width:62ch;margin:0}
+.bar{display:flex;height:6px;width:132px;margin-top:36px;border-radius:3px;overflow:hidden}
+.bar span{flex:1}
+
+.index{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:56px}
+.index a{padding:22px 24px 26px 0;border-right:1px solid var(--line);display:block}
+.index a+a{padding-left:24px}
+.index a:last-child{border-right:0}
+.index .n{font:500 13px var(--mono);color:var(--ochre)}
+.index h3{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:10px 0 6px}
+.index p{margin:0;color:var(--ink-2);font-size:15px}
+.index a:hover h3{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:820px){.index{grid-template-columns:1fr}.index a,.index a+a{padding:20px 0;border-right:0;border-bottom:1px solid var(--line)}}
+
+/* Wiley Banting banner */
+.wb{padding:0 0 clamp(72px,9vw,120px)}
+.wb .panel{background:#151413;color:#f2efe8;border-radius:8px;overflow:hidden}
+.wb .body{padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,56px);align-items:end}
+.wb .label{color:#e0a845}
+.wb h2{font-size:clamp(34px,4vw,54px);line-height:1;letter-spacing:-.03em;margin:12px 0 16px;font-weight:600}
+.wb p{color:#c4bfb5;margin:0;max-width:52ch}
+.wb .side{display:flex;flex-direction:column;gap:24px}
+.wb .row{display:flex;gap:32px;flex-wrap:wrap}
+.wb .row b{display:block;font-size:28px;font-weight:600;color:#fff;letter-spacing:-.02em}
+.wb .row span{font:400 12px var(--mono);color:#8f8a80}
+.wb .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;background:#f2efe8;color:var(--ink);padding:12px 20px;border-radius:999px;font-weight:500;font-size:15px}
+.btn.ghost{background:transparent;color:#f2efe8;border:1px solid #5a554e}
+.wb .media{display:block;background:#ecebe9;aspect-ratio:4/1}
+@media (max-width:900px){.wb .body{grid-template-columns:1fr}.wb .media{aspect-ratio:3/1}}
+.wb .media img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+
+/* Sections */
+section.practice{padding:clamp(72px,9vw,120px) 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:end;margin-bottom:48px}
+.sec-head h2{font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-.025em;font-weight:600;margin:14px 0 0}
+.sec-head p{margin:0;color:var(--ink-2);max-width:56ch}
+@media (max-width:820px){.sec-head{grid-template-columns:1fr;gap:16px}}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+a.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(0,0,0,.3)}
+.card .media{background:var(--tint);aspect-ratio:4/3;overflow:hidden}
+.card .media img{width:100%;height:100%;object-fit:cover}
+.card .media.contain{background:#fff;border-bottom:1px solid var(--line)}
+.card .media.contain img{object-fit:contain;padding:18px}
+.atlas-thumb{display:grid;place-items:center;background:#fff!important;border-bottom:1px solid var(--line)}
+.card .media.wide{aspect-ratio:16/9}
+.card .body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h4{margin:0;font-size:20px;line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.card p{margin:0;color:var(--ink-2);font-size:15px}
+.card .meta{margin-top:auto;padding-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.tag{font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:var(--ink-2)}
+.tag.todo{border-style:dashed;color:var(--ochre);border-color:var(--ochre)}
+
+.feature{display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:24px}
+.feature .media{display:grid;place-items:center;padding:28px;border-right:1px solid var(--line);background:#fff}
+.feature .media img{max-height:440px;width:auto}
+.feature .body{padding:clamp(24px,3.5vw,44px);display:flex;flex-direction:column;gap:14px;background:var(--tint)}
+.feature h3{font-size:clamp(24px,2.4vw,30px);line-height:1.15;letter-spacing:-.015em;margin:0;font-weight:600}
+.feature p{margin:0;color:var(--ink-2)}
+.link{margin-top:auto;font-weight:500;border-bottom:1px solid var(--ink);align-self:flex-start;padding-bottom:2px}
+.stats{display:flex;gap:28px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats b{display:block;font-size:22px;font-weight:600}
+.stats span{font:400 12px var(--mono);color:var(--ink-3)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width:1000px){.grid-3{grid-template-columns:1fr 1fr}}
+@media (max-width:820px){.feature,.grid-2{grid-template-columns:1fr}.feature .media{border-right:0;border-bottom:1px solid var(--line)}}
+@media (max-width:600px){.grid-3{grid-template-columns:1fr}}
+
+/* Atlas */
+.atlas{background:var(--charcoal);color:#f2efe8;border-radius:6px;overflow:hidden;display:grid;grid-template-columns:1fr 1.15fr;margin-bottom:24px}
+.atlas .body{padding:clamp(24px,3.5vw,44px);display:flex;flex-direction:column;gap:14px}
+.atlas .label{color:#c9b89b}
+.atlas h3{font-size:clamp(26px,2.6vw,34px);line-height:1.1;letter-spacing:-.02em;margin:0;font-weight:600}
+.atlas p{margin:0;color:#d7d2c8}
+.atlas ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px;color:#e8e3d9}
+.atlas li::before{content:"→ ";color:#e0a845}
+.atlas .diagram{background:#3b3632;padding:28px;display:grid;place-items:center}
+.atlas svg{width:100%;height:auto;max-width:560px}
+@media (max-width:900px){.atlas{grid-template-columns:1fr}}
+.approach{display:grid;grid-template-columns:1fr 1fr;gap:40px;border:1px solid var(--line);border-radius:6px;padding:clamp(24px,3.5vw,40px)}
+.approach h4{font-size:22px;margin:10px 0 10px;font-weight:600;letter-spacing:-.01em}
+.approach p{margin:0;color:var(--ink-2)}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;font-size:15px;color:var(--ink-2)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 13px var(--mono);color:var(--ochre);padding-top:2px}
+.steps b{color:var(--ink);font-weight:600}
+@media (max-width:820px){.approach{grid-template-columns:1fr;gap:24px}}
+
+.atlas-card{flex-direction:row;margin-bottom:24px}
+.atlas-card .media{width:46%;flex:none;aspect-ratio:auto;border-bottom:0!important;border-right:1px solid var(--line);padding:20px}
+.atlas-card .body{padding:clamp(24px,3vw,36px);justify-content:center}
+.atlas-card h4{font-size:24px}
+@media (max-width:820px){.atlas-card{flex-direction:column}.atlas-card .media{width:100%;border-right:0;border-bottom:1px solid var(--line)!important}}
+
+/* Industrial design */
+.highlights{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:24px;margin-bottom:24px}
+.highlights .card:first-child{grid-row:span 2}
+.highlights .card:first-child .media{aspect-ratio:auto;flex:1;min-height:320px}
+.highlights .card:first-child h4{font-size:26px}
+.highlights .card:first-child .body{flex:none}
+@media (max-width:900px){.highlights{grid-template-columns:1fr}.highlights .card:first-child{grid-row:auto}.highlights .card:first-child .media{aspect-ratio:16/9;min-height:0}}
+.more{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.more .card{flex-direction:row}
+.more .card .media{width:42%;flex:none;aspect-ratio:auto}
+@media (max-width:820px){.more{grid-template-columns:1fr}}
+@media (max-width:520px){.more .card{flex-direction:column}.more .card .media{width:100%;aspect-ratio:4/3}}
+
+/* About */
+.about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.about .portrait{border-radius:6px;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;width:100%}
+.about h2{font-size:clamp(30px,3.4vw,44px);letter-spacing:-.025em;line-height:1.08;margin:14px 0 22px;font-weight:600}
+.about p{color:var(--ink-2);margin:0 0 16px;max-width:62ch}
+.creds{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);margin-top:28px}
+.creds div{padding:16px 0;border-bottom:1px solid var(--line)}
+.creds div:nth-child(odd){padding-right:16px}
+.creds b{display:block;font-weight:600;font-size:15px}
+.creds span{color:var(--ink-3);font-size:14px}
+.supp{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;margin-top:32px}
+.supp figure{margin:0}
+.supp img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px}
+.supp figcaption{margin-top:8px}
+@media (max-width:820px){.about .wrap{grid-template-columns:1fr}.about .portrait{max-width:380px}}
+@media (max-width:520px){.supp{grid-template-columns:1fr}}
+
+/* Footer */
+footer{border-top:1px solid var(--ink);padding:56px 0 40px}
+footer .top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:end}
+footer h2{font-size:clamp(30px,4.4vw,58px);letter-spacing:-.03em;line-height:1;margin:14px 0 0;font-weight:600}
+footer h2 a{border-bottom:2px solid var(--ochre)}
+footer .links{display:flex;gap:22px;font-size:15px}
+footer .links a{color:var(--ink-2)}
+footer .bottom{display:flex;justify-content:space-between;margin-top:56px;gap:16px;flex-wrap:wrap}
+
+</style>
 </head>
 <body>
 
-<a class="skip-link" href="#main">Skip to Content</a>
-
-<header class="header">
-  <a class="header__brand" href="./" aria-label="Milo Tacheny — home">
-    <img src="assets/logo-signature.png" alt="Milo Tacheny">
-  </a>
-  <nav class="header__nav" aria-label="Primary">
-    <a href="./" aria-current="page">Portfolio</a>
-    <a href="bio.html">Bio</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/logo-signature.png" alt="">Milo Tacheny</a>
+    <nav aria-label="Primary">
+      <a href="#research">Research &amp; Strategy</a>
+      <a href="#systems">Human Factors</a>
+      <a href="#industrial">Industrial Design</a>
+      <a href="about.html">About</a>
+      <a class="cta" href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<main id="main">
+<main id="top">
 
-  <!-- ── Hero ───────────────────────────────────────────── -->
-  <section class="section section--hero">
-    <div class="grid grid--hero">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">Portfolio · 2026</span>
+      <h1>Milo Tacheny</h1>
+      <p class="sub">Systems engineer and design researcher working across human factors, higher education, and physical products.</p>
+      <p>I study how people fit the products and systems they depend on, then design around what I find. My current work includes AI-assisted strategy workflows at the University of Minnesota, protective equipment research with the Human Dimensioning Lab, and everyday carry gear for specialized demographics under Tash Labs.</p>
+      <div class="bar" aria-hidden="true"><span style="background:var(--ochre)"></span><span style="background:var(--slate)"></span><span style="background:var(--olive)"></span><span style="background:var(--charcoal)"></span></div>
 
-      <div class="block" style="--area:1/3/2/5">
-        <img class="fit" src="assets/color-bar.png" alt="" aria-hidden="true">
+      <div class="index">
+        <a href="#research"><span class="n">01</span><h3>Research &amp; Strategy</h3><p>Protective equipment fit research with the Human Dimensioning Lab.</p></a>
+        <a href="#systems"><span class="n">02</span><h3>Human Factors &amp; Systems Design</h3><p>AI-assisted research and synthesis workflows, including the CDes Atlas of AI tools for design.</p></a>
+        <a href="#industrial"><span class="n">03</span><h3>Industrial Design</h3><p>Hard goods for everyday carry, medical wearables, and transport.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 Research & Strategy -->
+  <section class="practice" id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">01 · Research &amp; Strategy</span><h2>Fit, sizing, and protective equipment.</h2></div>
+        <p>Research with the Human Dimensioning Lab at the University of Minnesota. I use 3D scanning, CT imaging, and dimensional analysis to study how protective gear fits the body, with a focus on firefighter gloves.</p>
       </div>
 
-      <div class="block block--text" style="--area:2/3/6/12">
-        <h1 class="hero__title"><strong>MILO TACHENY</strong></h1>
-        <p class="hero__sub">PRODUCT DESIGN x HUMAN FACTORS</p>
-      </div>
-
-      <div class="block" style="--area:2/13/6/16">
-        <img class="fit" src="assets/tile-1-knife.jpg" alt="Sketch of a fixed-blade knife">
-      </div>
-      <div class="block" style="--area:2/16/6/19">
-        <img class="fit" src="assets/tile-2-glove.jpg" alt="Sketch of a tactical glove">
-      </div>
-      <div class="block" style="--area:2/19/6/22">
-        <img class="fit" src="assets/tile-3-poles.jpg" alt="Sketch of trekking poles">
-      </div>
-      <div class="block" style="--area:2/22/6/25">
-        <img class="fit" src="assets/tile-4-lantern.jpg" alt="Sketch of a camping lantern">
-      </div>
+      <article class="feature">
+        <div class="media"><img src="assets/research/glove-diagram.png" alt="Color deviation map of a 3D-scanned firefighter glove showing gaps between interior and exterior layers" loading="lazy"></div>
+        <div class="body">
+          <span class="label">Published · ITAA Proceedings</span>
+          <h3>Quantifying the dimensional relationship between the interior and exterior of multi-layered protective gloves</h3>
+          <p>Comparing 3D scans of firefighter glove layers showed the largest air gaps and misalignment at the fingertips and the web of the hand. Those are the same areas where dexterity loss matters most on the job.</p>
+          <div class="stats">
+            <div><b>Fingertips</b><span>largest layer gap</span></div>
+            <div><b>Web area</b><span>key misalignment</span></div>
+          </div>
+          <a class="link" href="https://www.iastatedigitalpress.com/itaa/article/id/21990/" target="_blank" rel="noopener">Read the paper ↗</a>
+        </div>
+      </article>
 
     </div>
   </section>
 
-  <!-- ── Portfolio categories ───────────────────────────── -->
-  <section class="section section--work">
-    <div class="grid grid--work">
-
-      <div class="block" style="--area:1/1/17/11">
-        <img class="fit" src="assets/cat-design.png" alt="Product design render of a container">
-      </div>
-      <div class="block" style="--area:18/3/20/9">
-        <a class="btn" href="design.html">Design Work</a>
+  <!-- 02 Human Factors & Systems Design -->
+  <section class="practice" id="systems">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">02 · Human Factors &amp; Systems Design</span><h2>AI-assisted workflows for complex organizations.</h2></div>
+        <p>I design research and synthesis workflows that pair AI tools with human review.</p>
       </div>
 
-      <div class="block" style="--area:1/8/17/20">
-        <img class="fit" src="assets/cat-research.png" alt="Hand biomechanics research study">
+      <article class="atlas">
+        <div class="body">
+          <span class="label">Featured · University of Minnesota College of Design</span>
+          <h3>Strategic alignment workflow</h3>
+          <p>This workflow maps College of Design priorities against University of Minnesota strategic plans. An AI-assisted synthesis workflow, with human review at each step, turns long planning documents into short briefs for senior leadership.</p>
+          <ul>
+            <li>Alignment analysis across college and system-wide plans</li>
+            <li>Synthesis workflow with traceable sources and human checkpoints</li>
+            <li>Change management for institutional technology adoption</li>
+          </ul>
+        </div>
+        <div class="diagram" aria-label="Diagram: strategy documents flow through AI-assisted synthesis and human review into decision support">
+          <svg viewBox="0 0 520 300" role="img" fill="none" font-family="IBM Plex Mono, monospace" font-size="11">
+            <g stroke="#8c8276" stroke-width="1">
+              <rect x="10" y="40" width="124" height="40" rx="4"/><rect x="10" y="130" width="124" height="40" rx="4"/><rect x="10" y="220" width="124" height="40" rx="4"/>
+              <path d="M134 60 C170 60 170 150 200 150M134 150 H200M134 240 C170 240 170 150 200 150"/>
+              <path d="M330 150 H380"/>
+              <path d="M265 185 V230 M265 230 H330" stroke-dasharray="3 3"/>
+            </g>
+            <g fill="#d7d2c8"><text x="20" y="64">College plan</text><text x="20" y="154">University plan</text><text x="20" y="244">Unit reports</text></g>
+            <rect x="200" y="115" width="130" height="70" rx="4" fill="#a46403"/>
+            <text x="216" y="145" fill="#fff">AI-assisted</text><text x="216" y="162" fill="#fff">synthesis</text>
+            <rect x="330" y="212" width="110" height="36" rx="4" stroke="#e0a845"/>
+            <text x="344" y="234" fill="#e0a845">Human review</text>
+            <rect x="380" y="115" width="130" height="70" rx="4" fill="#f2efe8"/>
+            <text x="396" y="145" fill="#141414">Decision</text><text x="396" y="162" fill="#141414">support</text>
+            <text x="10" y="22" fill="#8c8276">INPUTS</text><text x="200" y="100" fill="#8c8276">ALIGN</text><text x="380" y="100" fill="#8c8276">ACT</text>
+          </svg>
+        </div>
+      </article>
+
+      <a class="card atlas-card" href="cdes-atlas.html">
+          <div class="media atlas-thumb" aria-hidden="true"><svg viewBox="0 0 280 200" width="86%" fill="none" font-family="IBM Plex Mono, monospace" font-size="8"><text x="60" y="14" fill="#8a8a86" text-anchor="middle">S1</text><text x="90" y="14" fill="#8a8a86" text-anchor="middle">S2</text><text x="120" y="14" fill="#8a8a86" text-anchor="middle">S3</text><text x="150" y="14" fill="#8a8a86" text-anchor="middle">S4</text><text x="180" y="14" fill="#8a8a86" text-anchor="middle">S5</text><text x="210" y="14" fill="#8a8a86" text-anchor="middle">S6</text><text x="240" y="14" fill="#8a8a86" text-anchor="middle">S7</text><text x="8" y="33" fill="#8a8a86">ARCH</text><line x1="44" x2="272" y1="40" y2="40" stroke="#e3e1dc"/><circle cx="120" cy="30" r="4" fill="#141414"/><circle cx="180" cy="30" r="4" fill="#a46403"/><circle cx="210" cy="30" r="4" fill="#a46403"/><text x="8" y="52" fill="#8a8a86">PROD</text><line x1="44" x2="272" y1="59" y2="59" stroke="#e3e1dc"/><circle cx="60" cy="49" r="4" fill="#a46403"/><circle cx="120" cy="49" r="4" fill="#a46403"/><circle cx="210" cy="49" r="4" fill="#a46403"/><circle cx="240" cy="49" r="4" fill="#141414"/><text x="8" y="71" fill="#8a8a86">LAND</text><line x1="44" x2="272" y1="78" y2="78" stroke="#e3e1dc"/><circle cx="120" cy="68" r="4" fill="#141414"/><circle cx="150" cy="68" r="3.5" stroke="#141414" stroke-dasharray="2 1.5"/><circle cx="180" cy="68" r="4" fill="#a46403"/><circle cx="210" cy="68" r="4" fill="#a46403"/><circle cx="240" cy="68" r="3.5" stroke="#141414" stroke-dasharray="2 1.5"/><text x="8" y="90" fill="#8a8a86">APRL</text><line x1="44" x2="272" y1="97" y2="97" stroke="#e3e1dc"/><circle cx="90" cy="87" r="4" fill="#141414"/><circle cx="240" cy="87" r="4" fill="#141414"/><text x="8" y="109" fill="#8a8a86">GRPH</text><line x1="44" x2="272" y1="116" y2="116" stroke="#e3e1dc"/><circle cx="90" cy="106" r="4" fill="#a46403"/><circle cx="120" cy="106" r="4" fill="#141414"/><circle cx="150" cy="106" r="4" fill="#a46403"/><circle cx="180" cy="106" r="4" fill="#a46403"/><text x="8" y="128" fill="#8a8a86">RTL</text><line x1="44" x2="272" y1="135" y2="135" stroke="#e3e1dc"/><circle cx="90" cy="125" r="4" fill="#141414"/><circle cx="120" cy="125" r="4" fill="#a46403"/><circle cx="180" cy="125" r="4" fill="#a46403"/><circle cx="210" cy="125" r="4" fill="#a46403"/><text x="8" y="147" fill="#8a8a86">INTR</text><line x1="44" x2="272" y1="154" y2="154" stroke="#e3e1dc"/><circle cx="60" cy="144" r="4" fill="#141414"/><circle cx="90" cy="144" r="4" fill="#141414"/><circle cx="150" cy="144" r="4" fill="#a46403"/><circle cx="180" cy="144" r="4" fill="#a46403"/><circle cx="210" cy="144" r="4" fill="#141414"/><circle cx="240" cy="144" r="4" fill="#141414"/><text x="8" y="166" fill="#8a8a86">UX</text><line x1="44" x2="272" y1="173" y2="173" stroke="#e3e1dc"/><circle cx="90" cy="163" r="3.5" stroke="#141414" stroke-dasharray="2 1.5"/><circle cx="150" cy="163" r="4" fill="#a46403"/><circle cx="180" cy="163" r="4" fill="#141414"/><circle cx="240" cy="163" r="4" fill="#a46403"/><text x="8" y="185" fill="#8a8a86">HF</text><line x1="44" x2="272" y1="192" y2="192" stroke="#e3e1dc"/><circle cx="90" cy="182" r="4" fill="#141414"/><circle cx="120" cy="182" r="4" fill="#141414"/><circle cx="150" cy="182" r="4" fill="#a46403"/><circle cx="180" cy="182" r="4" fill="#141414"/><circle cx="240" cy="182" r="4" fill="#141414"/></svg></div>
+          <div class="body">
+            <span class="label">Featured · UMN College of Design</span>
+            <h4>CDes Atlas: AI tools matrix</h4>
+            <p>A working map of 57 AI tools across the nine College of Design disciplines: what each tool does, where it sits in the design process, and what it connects to.</p>
+            <div class="meta"><span class="tag">Interactive</span><span class="tag">AI adoption</span><span class="tag">57 tools</span></div>
+            <span class="link" style="margin-top:14px">Open the matrix →</span>
+          </div>
+        </a>
+
+      <div class="approach">
+        <div>
+          <span class="label">Approach</span>
+          <h4>How I work in complex systems</h4>
+          <p>A decade running multi-site operations taught me where plans tend to break: at handoffs between teams, tools, and levels of the organization. That is where I focus.</p>
+          <div class="stats" style="margin-top:20px">
+            <div><b>10+ yrs</b><span>multi-site operations</span></div>
+            <div><b>80+</b><span>team members developed</span></div>
+          </div>
+        </div>
+        <ol class="steps">
+          <li><span><b>Trace the decision.</b> Follow it from strategy through operations, technology, and the people responsible for it.</span></li>
+          <li><span><b>Find the handoffs.</b> Locate where intent gets lost between documents, teams, and systems.</span></li>
+          <li><span><b>Design the workflow.</b> Decide which steps AI handles, which need a person, and how each is checked.</span></li>
+          <li><span><b>Support adoption.</b> Train, document, and adjust so the new process holds after launch.</span></li>
+        </ol>
       </div>
-      <div class="block" style="--area:18/11/20/17">
-        <a class="btn" href="research.html">Research</a>
+    </div>
+  </section>
+
+  <!-- 03 Industrial Design -->
+  <section class="practice" id="industrial">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">03 · Industrial Design</span><h2>Selected physical products.</h2></div>
+        <p>A focused selection of physical products. Each one starts with the same question as the research: who is this built to fit?</p>
       </div>
 
-      <div class="block" style="--area:1/17/16/27">
-        <img class="fit" src="assets/cat-tash.png" alt="Hand holding an ESEE-4 knife">
-      </div>
-      <div class="block" style="--area:18/19/20/25">
-        <a class="btn" href="tashstudios.html">TASH Studios</a>
+      <div class="highlights">
+        <a class="card" href="design/lowrollermini.html">
+          <div class="media"><img src="assets/design/lowrollermini-prototypes.jpg" alt="Dozens of 3D-printed Low Roller Mini tolerance prototypes" loading="lazy"></div>
+          <div class="body"><span class="label">Wiley Banting · Patented</span><h4>The Low Roller Mini</h4><p>A pocket-sized glucose tablet case for people managing diabetes, designed for quick one-handed access.</p><div class="meta"><span class="tag">Medical EDC</span><span class="tag">In production</span></div></div>
+        </a>
+        <a class="card" href="design/themeridianknife.html">
+          <div class="media wide"><img src="assets/design/themeridian.png" alt="The Meridian fixed-blade knife" loading="lazy"></div>
+          <div class="body"><span class="label">EDC · Ergonomics</span><h4>The Meridian</h4><p>A fixed-blade knife sized for smaller hands.</p></div>
+        </a>
+        <a class="card" href="design/bicycle-portfolio-transporter.html">
+          <div class="media wide"><img src="assets/design/bicycle-transporter.jpg" alt="Bicycle Portfolio Transporter" loading="lazy"></div>
+          <div class="body"><span class="label">Human Factors in Design · DES 5185</span><h4>Bicycle Portfolio Transporter</h4><p>A bike-mounted carrier for moving large-format design portfolios.</p></div>
+        </a>
       </div>
 
+      <div class="more">
+        <a class="card" href="design/omnipod.html">
+          <div class="media"><img src="assets/design/omnipod.png" alt="Enhancing Safety, Omnipod 5 project" loading="lazy" style="object-position:75% 50%"></div>
+          <div class="body"><span class="label">Wearable Technology Lab</span><h4>Enhancing Safety | Omnipod 5</h4><p>Impact detection and cannula dislodgement prevention for an automated insulin delivery system.</p></div>
+        </a>
+        <a class="card" href="design/humangear-internship.html">
+          <div class="media"><img src="assets/design/humangear.png" alt="HUMANGEAR internship work" loading="lazy"></div>
+          <div class="body"><span class="label">Industry · Outdoor</span><h4>HUMANGEAR</h4><p>Product development internship on outdoor hard goods.</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wiley Banting banner -->
+  <section class="wb" aria-labelledby="wb-title">
+    <div class="wrap">
+      <div class="panel">
+        <a class="media" href="https://www.etsy.com/shop/WileyBanting" target="_blank" rel="noopener"><img src="https://i.etsystatic.com/54155100/r/isbl/f22832/82600108/isbl_1680x420.82600108_2u8hkvk3.jpg" alt="Wiley Banting banner: modern gear for diabetes care, showing the Low Roller alongside an everyday diabetes carry kit"></a>
+        <div class="body">
+          <div>
+            <span class="label">Featured · Founder</span>
+            <h2 id="wb-title">Wiley Banting</h2>
+            <p>Wiley Banting makes modern gear for diabetes care. The brand grew out of its founding product, the Low Roller Mini, a patented glucose tablet case built for everyday carry. It now offers 8+ unique products, distributed across 30+ states.</p>
+          </div>
+          <div class="side">
+            <div class="row">
+              <div><b>8+</b><span>unique products</span></div>
+              <div><b>30+</b><span>states distributed</span></div>
+              <div><b>Patented</b><span>founding product</span></div>
+            </div>
+            <div class="ctas">
+              <a class="btn" href="https://www.etsy.com/shop/WileyBanting" target="_blank" rel="noopener">Shop on Etsy ↗</a>
+              <a class="btn ghost" href="design/lowrollermini.html">Low Roller Mini case study</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<!-- ── Footer ───────────────────────────────────────────── -->
-<footer class="section section--footer">
-  <div class="grid grid--footer">
-
-    <div class="block block--text" style="--area:1/2/3/11">
-      <p class="footer__copy">&copy; 2026, Milo Tacheny &amp; TASH Studios.<br>All rights reserved.</p>
+<footer id="contact">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <span class="label">Contact</span>
+        <h2>Let's build something<br><a href="contact.html">together</a>.</h2>
+      </div>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/milo-tacheny" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://scholar.google.com/citations?user=gMuwaoUAAAAJ&amp;hl=en&amp;oi=sra" target="_blank" rel="noopener">Google Scholar ↗</a>
+        <a href="contact.html">Email</a>
+      </div>
     </div>
-
-    <div class="block" style="--area:1/22/3/25">
-      <ul class="socials">
-        <li><a href="https://www.linkedin.com/in/milo-tacheny" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.1 8.44h3.7V20H3.1V8.44zm5.86 0h3.55v1.58h.05c.5-.9 1.7-1.85 3.5-1.85 3.74 0 4.43 2.4 4.43 5.52V20h-3.7v-5.5c0-1.31-.02-3-1.85-3-1.85 0-2.13 1.42-2.13 2.9V20H8.96V8.44z"/></svg>
-        </a></li>
-        <li><a href="https://www.youtube.com/@milotash" aria-label="YouTube" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.58 7.19a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 0 0 2.42 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .42 4.81 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.42-4.81zM10 15.02V8.98L15.2 12 10 15.02z"/></svg>
-        </a></li>
-        <li><a href="https://scholar.google.com/citations?user=gMuwaoUAAAAJ&amp;hl=en&amp;oi=sra" aria-label="Google Scholar" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.6 13.4a4 4 0 0 1 0-5.66l2.83-2.83a4 4 0 0 1 5.66 5.66l-1.42 1.41-1.41-1.41 1.41-1.42a2 2 0 1 0-2.83-2.83l-2.83 2.83a2 2 0 0 0 0 2.83l-1.41 1.41zm2.8-2.8a4 4 0 0 1 0 5.66l-2.83 2.83a4 4 0 0 1-5.66-5.66l1.42-1.41 1.41 1.41-1.41 1.42a2 2 0 1 0 2.83 2.83l2.83-2.83a2 2 0 0 0 0-2.83l1.41-1.41z"/></svg>
-        </a></li>
-      </ul>
+    <div class="bottom">
+      <span class="label">© 2026 Milo Tacheny</span>
+      <span class="label">Minneapolis, MN</span>
     </div>
-
   </div>
 </footer>
 

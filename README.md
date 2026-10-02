@@ -1,4 +1,32 @@
-# milotacheny.com — static rebuild
+# milotacheny.com
+
+Personal portfolio for Milo Tacheny. Plain HTML and CSS, no build step, served by GitHub Pages.
+
+## V2 (current, October 2026)
+
+```
+index.html        portfolio: research & strategy, human factors & systems design, industrial design, Wiley Banting
+about.html        bio, headshot, teaching photo
+cdes-atlas.html   interactive CDes AI tools matrix (data embedded in the page)
+design/           legacy case-study pages, still linked from the industrial design cards
+bio.html, research.html, design.html, tashstudios.html
+                  redirects so old links keep working
+```
+
+The V2 pages carry their own styles inline. `styles.css` is only used by the legacy pages in `design/` and `contact.html`.
+
+## Previous version
+
+The original site is preserved two ways:
+
+- branch `v1-archive`
+- tag `v1`
+
+To browse it locally: `git checkout v1-archive`, then run the server below. Return with `git checkout main`.
+
+---
+
+## V1 notes (archived)
 
 A hand-built, dependency-free copy of the Squarespace landing page. Plain HTML +
 CSS, no build step, no JavaScript.
